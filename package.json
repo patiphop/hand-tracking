@@ -5,12 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack serve",
-    "transpile": "yarn tsc --declaration",
-    "api_extractor": "yarn api-extractor run",
-    "api_documenter": "yarn api-documenter markdown --input-folder api_extractor_misc --output-folder docs",
-    "docs": "yarn lint && yarn transpile && yarn api_extractor && yarn api_documenter",
-    "lint": "yarn eslint src && yarn eslint example",
-    "prepack": "yarn lint && yarn transpile"
+    "build": "webpack build"
   },
   "author": "",
   "license": "ISC",

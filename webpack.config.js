@@ -6,13 +6,14 @@ const TerserPlugin = require('terser-webpack-plugin');
 
 const PRODUCTION = !!process.env.PRODUCTION;
 
-const DEMOS = ['tfjs_webgl', 'tfjs_wasm'];
+const DEMOS = ['tfjs_wasm'];
 
 module.exports = (env) => {
   const config = {
     mode: PRODUCTION ? 'production' : 'development',
     devtool: 'inline-source-map',
     devServer: {
+      open: ['/'],
       host: '0.0.0.0',
       port: 8090,
       watchFiles: ['src/**/*'],
@@ -30,6 +31,9 @@ module.exports = (env) => {
         filename: `${d}_draw.html`,
         chunks: [`${d}_draw`],
       })),
+      new HtmlWebpackPlugin({
+        template: 'src/demos/draw/index.html',
+      }),
       new CopyWebpackPlugin({
         patterns: [
           {from: 'node_modules/@tensorflow/tfjs-backend-wasm/dist/*.wasm'},
